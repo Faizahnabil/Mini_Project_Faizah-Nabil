@@ -1,0 +1,250 @@
+data_atlet = []
+
+
+def tampilkan_data():
+    print("\n================================ DATA ATLET JUDO ================================")
+
+    if len(data_atlet) == 0:
+        print("Belum ada data atlet.")
+    else:
+        for i, atlet in enumerate(data_atlet, start=1):
+            print(f"\nAtlet ke-{i}")
+            print(f"Nama             : {atlet[0]}")
+            print(f"Umur             : {atlet[1]} tahun")
+            print(f"Jenis Kelamin    : {atlet[2]}")
+            print(f"Berat Badan      : {atlet[3]:.0f} kg")
+            print(f"Kelas Pertandingan : {atlet[4]}")
+            print(f"Asal Klub        : {atlet[5]}")
+
+    print("=================================================================================")
+
+
+def input_umur():
+    while True:
+        try:
+            umur = int(input("Umur             : "))
+
+            if umur > 0:
+                return umur
+            else:
+                print("Umur harus lebih dari 0.")
+
+        except ValueError:
+            print("Input umur harus berupa angka.")
+
+
+def input_berat():
+    while True:
+        try:
+            berat = float(input("Berat Badan (kg) : "))
+
+            if berat > 0:
+                return berat
+            else:
+                print("Berat badan harus lebih dari 0 kg.")
+
+        except ValueError:
+            print("Berat badan harus berupa angka.")
+
+
+def tambah_data():
+    print("\n========== TAMBAH DATA ATLET ==========")
+
+    while True:
+        nama = input("Nama             : ").strip()
+
+        if nama != "":
+            break
+        else:
+            print("Nama tidak boleh kosong.")
+
+    umur = input_umur()
+
+    while True:
+        jenis_kelamin = input("Jenis Kelamin (L/P): ").upper()
+
+        if jenis_kelamin == "L" or jenis_kelamin == "P":
+            break
+        else:
+            print("Jenis kelamin hanya boleh L atau P.")
+
+    berat = input_berat()
+
+    while True:
+        kelas = input("Kelas Pertandingan: ").strip()
+
+        if kelas != "":
+            break
+        else:
+            print("Kelas pertandingan tidak boleh kosong.")
+
+    while True:
+        klub = input("Asal Klub        : ").strip()
+
+        if klub != "":
+            break
+        else:
+            print("Asal klub tidak boleh kosong.")
+
+    atlet_baru = (
+        nama,
+        umur,
+        jenis_kelamin,
+        berat,
+        kelas,
+        klub
+    )
+
+    data_atlet.append(atlet_baru)
+
+    print("\nData atlet berhasil ditambahkan!")
+    print(f"Nama atlet : {nama}")
+
+
+def ubah_data():
+    print("\n========== UBAH DATA ATLET ==========")
+
+    if len(data_atlet) == 0:
+        print("Belum ada data atlet.")
+        return
+
+    tampilkan_data()
+
+    while True:
+        try:
+            nomor = int(input("Pilih nomor atlet yang ingin diubah: "))
+
+            if 1 <= nomor <= len(data_atlet):
+                break
+            else:
+                print("Nomor atlet tidak tersedia.")
+
+        except ValueError:
+            print("Input harus berupa angka.")
+
+    index = nomor - 1
+
+    print("\nMasukkan data baru:")
+
+    while True:
+        nama = input("Nama             : ").strip()
+
+        if nama != "":
+            break
+        else:
+            print("Nama tidak boleh kosong.")
+
+    umur = input_umur()
+
+    while True:
+        jenis_kelamin = input("Jenis Kelamin (L/P): ").upper()
+
+        if jenis_kelamin == "L" or jenis_kelamin == "P":
+            break
+        else:
+            print("Jenis kelamin hanya boleh L atau P.")
+
+    berat = input_berat()
+
+    while True:
+        kelas = input("Kelas Pertandingan: ").strip()
+
+        if kelas != "":
+            break
+        else:
+            print("Kelas pertandingan tidak boleh kosong.")
+
+    while True:
+        klub = input("Asal Klub        : ").strip()
+
+        if klub != "":
+            break
+        else:
+            print("Asal klub tidak boleh kosong.")
+
+    data_atlet[index] = (
+        nama,
+        umur,
+        jenis_kelamin,
+        berat,
+        kelas,
+        klub
+    )
+
+    print("\nData atlet berhasil diubah!")
+
+
+def hapus_data():
+    print("\n========== HAPUS DATA ATLET ==========")
+
+    if len(data_atlet) == 0:
+        print("Belum ada data atlet.")
+        return
+
+    tampilkan_data()
+
+    while True:
+        try:
+            nomor = int(input("Pilih nomor atlet yang ingin dihapus: "))
+
+            if 1 <= nomor <= len(data_atlet):
+                break
+            else:
+                print("Nomor atlet tidak tersedia.")
+
+        except ValueError:
+            print("Input harus berupa angka.")
+
+    index = nomor - 1
+    atlet = data_atlet[index]
+
+    print(f"\nData yang akan dihapus: {atlet[0]}")
+
+    while True:
+        konfirmasi = input("Yakin ingin menghapus? (Y/N): ").upper()
+
+        if konfirmasi == "Y":
+            data_atlet.pop(index)
+            print("Data atlet berhasil dihapus!")
+            break
+
+        elif konfirmasi == "N":
+            print("Penghapusan dibatalkan.")
+            break
+
+        else:
+            print("Masukkan Y atau N.")
+
+
+while True:
+    print("\n")
+    print("========================================")
+    print("       SISTEM PENDATAAN ATLET JUDO")
+    print("========================================")
+    print("1. Tambah Data Atlet")
+    print("2. Lihat Seluruh Data")
+    print("3. Ubah Data Atlet")
+    print("4. Hapus Data Atlet")
+    print("5. Keluar")
+    print("========================================")
+
+    pilihan = input("Pilih menu (1-5): ")
+
+    if pilihan == "1":
+        tambah_data()
+
+    elif pilihan == "2":
+        tampilkan_data()
+
+    elif pilihan == "3":
+        ubah_data()
+
+    elif pilihan == "4":
+        hapus_data()
+
+    elif pilihan == "5":
+        print("\nProgram selesai. Terima kasih!")
+        break
+
+    else:
+        print("\nPilihan tidak tersedia. Silakan pilih menu 1-5.")
