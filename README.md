@@ -7,6 +7,7 @@ Program ini merupakan Sistem Pendataan Atlet Judo yang dibuat menggunakan bahasa
 Gambar Flowchart saya:
 
 
+<img width="708" height="794" alt="Screenshot 2026-09-12 082623" src="https://github.com/user-attachments/assets/2db3254b-c6d6-47f7-98b1-95235f15d2da" />
 
 
 
